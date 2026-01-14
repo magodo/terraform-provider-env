@@ -1,7 +1,6 @@
 package provider_test
 
 import (
-	"os"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
@@ -13,9 +12,7 @@ import (
 )
 
 func TestEnvFunction(t *testing.T) {
-	os.Setenv("foo", "bar")
-	defer os.Unsetenv("foo")
-
+	t.Setenv("foo", "bar")
 	resource.UnitTest(t, resource.TestCase{
 		TerraformVersionChecks: []tfversion.TerraformVersionCheck{
 			tfversion.SkipBelow(tfversion.Version1_8_0),
